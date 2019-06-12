@@ -1,0 +1,50 @@
+{
+    "name": "polka-typescript",
+    "version": "0.0.1",
+    "description": "Testing polka in typescript",
+    "license": "MIT",
+    "main": "src/server.ts",
+    "engines": {
+        "node": ">=10.x"
+    },
+    "author": {
+        "name": "Pepijn van den Broek <KurozeroPB>",
+        "email": "root@kurozeropb.info",
+        "url": "https://kurozeropb.info"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/KurozeroPB/polka-typescript.git"
+    },
+    "homepage": "https://kurozeropb.github.io/polka-typescript/",
+    "bugs": {
+        "email": "bugs@kurozeropb.info",
+        "url": "https://github.com/KurozeroPB/polka-typescript/issues"
+    },
+    "keywords": [],
+    "scripts": {
+        "start": "cross-env NODE_ENV=production ts-node src/server.ts",
+        "test": "cross-env NODE_ENV=development ts-node src/server.ts",
+        "gts:check": "gts check",
+        "gts:clean": "gts clean",
+        "gts:fix": "gts fix",
+        "test:eslint": "eslint --ext .ts .",
+        "eslint:fix": "eslint --ext .ts --fix ."
+    },
+    "dependencies": {
+        "@polka/send-type": "^0.5.2",
+        "polka": "^0.5.2"
+    },
+    "devDependencies": {
+        "@types/node": "^12.0.8",
+        "@types/trouter": "^3.0.0",
+        "@typescript-eslint/eslint-plugin": "^1.10.2",
+        "@typescript-eslint/parser": "^1.10.2",
+        "cross-env": "^5.2.0",
+        "eslint": "^5.16.0",
+        "gts": "^1.0.0",
+        "ts-node": "^8.2.0",
+        "tslint": "^5.17.0",
+        "typescript": "^3.5.1"
+    }
+}
