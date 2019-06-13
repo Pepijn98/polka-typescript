@@ -3,7 +3,8 @@ import Collection from "@kurozero/collection";
 import APIRouter from "../Router";
 import settings from "../../../settings";
 import { IRoute } from "../../interfaces/IRoute";
-import { Polka, IncomingMessage, ServerResponse } from "polka";
+import { Polka } from "polka";
+import { IncomingMessage, ServerResponse } from "http";
 
 export default class IndexGET implements IRoute {
     public method: string;
