@@ -1,7 +1,8 @@
 import send from "@polka/send-type";
 import APIRouter from "../Router";
 import { IRoute } from "../../interfaces/IRoute";
-import { Polka, IncomingMessage, ServerResponse } from "polka";
+import { Polka } from "polka";
+import { IncomingMessage, ServerResponse } from "http";
 
 export default class TestPOST implements IRoute {
     public method: string;

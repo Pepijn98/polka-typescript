@@ -1,19 +1,13 @@
-/// <reference types="trouter">
-/// <reference types="http">
-
 declare module "polka" {
     import Trouter from "trouter";
     import { IncomingMessage, ServerResponse, Server } from "http";
 
-    export {
-        IncomingMessage,
-        ServerResponse
-    };
+    export type NextFunction = (err?: any) => void;
 
     export interface PolkaOpts {
         server?: Server;
-        onError?: Function;
-        onNoMatch?: Function;
+        onError?: (err: string | Error, req: IncomingMessage, res: ServerResponse, next: NextFunction) => void;
+        onNoMatch?: (req: IncomingMessage, res: ServerResponse) => void;
     }
 
     export class Polka<T = any> extends Trouter {
@@ -22,8 +16,8 @@ declare module "polka" {
         bwares: Record<string|number|symbol, T>;
         parse: Function;
         server: Server;
-        onError: Function;
-        onNoMatch: Function;
+        onError: (err: string | Error, req: IncomingMessage, res: ServerResponse, next: NextFunction) => void;
+        onNoMatch: (req: IncomingMessage, res: ServerResponse) => void;
 
         [x: string]: any | undefined;
 
@@ -33,7 +27,7 @@ declare module "polka" {
 
         use(base: string, ...fns: T[]): this;
 
-        use(fn: Function): this;
+        use(fn: (req: IncomingMessage, res: ServerResponse, next: NextFunction) => any): this;
 
         listen(port: string | number, ...fns: T[]): this;
 

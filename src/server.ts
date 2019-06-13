@@ -1,7 +1,8 @@
 import settings from "../settings";
 import APIRouter from "./api/Router";
 import bodyParser from "body-parser";
-import polka, { IncomingMessage, ServerResponse } from "polka";
+import polka from "polka";
+import { IncomingMessage, ServerResponse } from "http";
 
 const app = polka(settings.polka);
 const port = settings.env.startsWith("dev") ? 8080 : 80;
