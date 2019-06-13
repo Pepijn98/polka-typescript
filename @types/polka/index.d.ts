@@ -3,7 +3,7 @@
 
 declare module "polka" {
     import Trouter from "trouter";
-    import { IncomingMessage, ServerResponse } from "http";
+    import { IncomingMessage, ServerResponse, Server } from "http";
 
     export {
         IncomingMessage,
@@ -11,17 +11,17 @@ declare module "polka" {
     };
 
     export interface PolkaOpts {
-        server: any;
+        server?: Server;
         onError?: Function;
         onNoMatch?: Function;
     }
 
     export class Polka<T = any> extends Trouter {
-        apps: Record<string|number|symbol, any>;
-        wares: any[];
-        bwares: Record<string|number|symbol, any>;
+        apps: Record<string|number|symbol, T>;
+        wares: T[];
+        bwares: Record<string|number|symbol, T>;
         parse: Function;
-        server: any;
+        server: Server;
         onError: Function;
         onNoMatch: Function;
 
@@ -31,9 +31,11 @@ declare module "polka" {
 
         use(base: string, ...fns: T[]): this;
 
+        use(fn: Function): this;
+
         listen(port: string | number, ...fns: T[]): this;
 
-        handler(req: IncomingMessage, res: ServerResponse, info: Record<string|number|symbol, any>): void;
+        handler(req: IncomingMessage, res: ServerResponse, info: Record<string|number|symbol, T>): void;
     }
 
     export default function(opts?: PolkaOpts): Polka;
