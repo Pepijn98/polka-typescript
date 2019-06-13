@@ -23,6 +23,11 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@kurozero/collection@^0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@kurozero/collection/-/collection-0.3.6.tgz#49368310fb3472d36649fedd3f8509b6a367073a"
+  integrity sha512-MspuHStIZZyLutfqSnoHPXTwmDD4Rri7lFKb7LEaQMZGCoWtlhnKvOC9DSBZheX3J7zpHKKydMumYUDprkROwA==
+
 "@polka/send-type@^0.5.2":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@polka/send-type/-/send-type-0.5.2.tgz#65ed19522248e894eb9cfabe7ef0f166c10166a9"
@@ -1236,6 +1241,11 @@ redent@^2.0.0:
     indent-string "^3.0.0"
     strip-indent "^2.0.0"
 
+regexparam@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/regexparam/-/regexparam-1.2.1.tgz#cc2a50a987efacd328de8fa4989e3a919e6e3bab"
+  integrity sha512-L/xx/JNXFvejDD9b4FukSh2wCyYUpxSTnLkMpcZc/ygnmaF6ETnphh+FDKZS8XBGmu2e3GoZ1why9qkTYqr1ag==
+
 regexpp@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/regexpp/-/regexpp-2.0.1.tgz#8d19d31cf632482b589049f8281f93dbcba4d07f"
@@ -1502,6 +1512,13 @@ trouter@^2.0.1:
   integrity sha512-kr8SKKw94OI+xTGOkfsvwZQ8mWoikZDd2n8XZHjJVZUARZT+4/VV6cacRS6CLsH9bNm+HFIPU1Zx4CnNnb4qlQ==
   dependencies:
     matchit "^1.0.0"
+
+trouter@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/trouter/-/trouter-3.0.2.tgz#9dbc114ee05659705438430c5c8a19f46da07dad"
+  integrity sha512-wzUcM3oKmF8Fx5pd+3IxZj5LBugqW+hSQHm6cTHkpiZHL8w6YeZSzo3LPw0UdhlwaGPms3OxT7N4GEOIRTw+jw==
+  dependencies:
+    regexparam "^1.2.0"
 
 ts-node@^8.2.0:
   version "8.2.0"

@@ -1,23 +1,25 @@
 import settings from "../settings";
-import send from "@polka/send-type";
 import polka, { IncomingMessage, ServerResponse } from "polka";
+import APIRouter from "./api/Router";
 
 const app = polka();
 const port = settings.env.startsWith("dev") ? 8080 : 80;
+const api = new APIRouter();
 
-app.get("/", (_req: IncomingMessage, res: ServerResponse) => {
-    send(res, 200, {
-        statusCode: 200,
-        statusMessage: "OK",
-        data: {
-            message: "Request has been successfully completed",
-            version: settings.version,
-            env: settings.env
-        }
+async function main(): Promise<void> {
+    await api.loadRoutes();
+
+    app.use(api.path, api.router);
+
+    app.get("/", (_req: IncomingMessage, res: ServerResponse) => {
+        res.writeHead(302, { "Location": "/api" });
+        res.end();
     });
-});
 
-app.listen(port, (e: Error) => {
-    if (e) throw e;
-    console.info(`> Running on http://localhost:${port}`);
-});
+    app.listen(port, (e: Error) => {
+        if (e) throw e;
+        console.info(`> Running on http://localhost:${port}`);
+    });
+}
+
+main().catch(console.error);

@@ -25,6 +25,8 @@ declare module "polka" {
         onError: Function;
         onNoMatch: Function;
 
+        [x: string]: any | undefined;
+
         constructor(opts?: PolkaOpts);
 
         add(method: Trouter.HTTPMethod, pattern: string, ...fns: T[]): this;
