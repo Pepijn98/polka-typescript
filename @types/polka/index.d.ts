@@ -20,7 +20,7 @@ declare module "polka" {
         apps: Record<string|number|symbol, any>;
         wares: any[];
         bwares: Record<string|number|symbol, any>;
-        parse: any; // TODO: Update to @polka/url parser
+        parse: Function;
         server: any;
         onError: Function;
         onNoMatch: Function;
@@ -36,7 +36,5 @@ declare module "polka" {
         handler(req: IncomingMessage, res: ServerResponse, info: Record<string|number|symbol, any>): void;
     }
 
-    function polka(opts?: PolkaOpts): Polka;
-
-    export default polka;
+    export default function(opts?: PolkaOpts): Polka;
 }
