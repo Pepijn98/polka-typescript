@@ -25,11 +25,9 @@
     "scripts": {
         "start": "cross-env NODE_ENV=production ts-node src/server.ts",
         "test": "cross-env NODE_ENV=development ts-node src/server.ts",
-        "gts:check": "gts check",
-        "gts:clean": "gts clean",
-        "gts:fix": "gts fix",
-        "test:eslint": "eslint --ext .ts .",
-        "eslint:fix": "eslint --ext .ts --fix ."
+        "pretest": "yarn lint",
+        "lint": "eslint --ext .ts .",
+        "lint:fix": "eslint --ext .ts --fix ."
     },
     "dependencies": {
         "@kurozero/collection": "^0.3.6",

@@ -8,3 +8,6 @@ Just clone the repo if you want to try it out yourself. \
 
 Then install the modules with either commands, I prefer yarn \
 `yarn install` or `npm install`
+
+Test using \
+`yarn test` or `npm run test`
