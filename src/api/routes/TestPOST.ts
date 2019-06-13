@@ -15,14 +15,24 @@ export default class TestPOST implements IRoute {
 
         this.router.post(this.path, (req: IncomingMessage, res: ServerResponse) => {
             const body = (req as any).body;
-            send(res, 200, {
-                statusCode: 200,
-                statusMessage: "OK",
-                data: {
-                    message: "Request successfully completed",
-                    requestBody: body
-                }
-            });
+            if (body) {
+                send(res, 200, {
+                    statusCode: 200,
+                    statusMessage: "OK",
+                    data: {
+                        message: "Request successfully completed",
+                        requestBody: body
+                    }
+                });
+            } else {
+                send(res, 400, {
+                    statusCode: 400,
+                    statusMessage: "Bad Request",
+                    data: {
+                        message: "Missing request body"
+                    }
+                });
+            }
         });
     }
 }
