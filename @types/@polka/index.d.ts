@@ -1,5 +1,3 @@
-/// <reference types="http">
-
 declare module "@polka/send-type" {
     import { ServerResponse } from "http";
 
