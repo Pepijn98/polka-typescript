@@ -32,6 +32,8 @@
     "dependencies": {
         "@kurozero/collection": "^0.3.6",
         "@polka/send-type": "^0.5.2",
+        "@types/body-parser": "^1.17.0",
+        "body-parser": "^1.19.0",
         "polka": "^0.5.2"
     },
     "devDependencies": {
