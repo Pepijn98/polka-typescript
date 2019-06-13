@@ -34,8 +34,7 @@
     "dependencies": {
         "@kurozero/collection": "^0.3.6",
         "@polka/send-type": "^0.5.2",
-        "polka": "^0.5.2",
-        "trouter": "^3.0.2"
+        "polka": "^0.5.2"
     },
     "devDependencies": {
         "@types/node": "^12.0.8",
