@@ -8,8 +8,8 @@ import { Polka, IncomingMessage, ServerResponse } from "polka";
 export default class IndexGET implements IRoute {
     public method: string;
     public path: string;
-    public router: Polka
-    public routes: Collection<IRoute>
+    public router: Polka;
+    public routes: Collection<IRoute>;
 
     public constructor(api: APIRouter) {
         this.method = "get";
