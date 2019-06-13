@@ -3,7 +3,7 @@ import APIRouter from "./api/Router";
 import bodyParser from "body-parser";
 import polka, { IncomingMessage, ServerResponse } from "polka";
 
-const app = polka();
+const app = polka(settings.polka);
 const port = settings.env.startsWith("dev") ? 8080 : 80;
 const api = new APIRouter();
 
