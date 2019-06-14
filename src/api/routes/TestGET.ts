@@ -12,7 +12,7 @@ export default class TestPOST extends BaseRoute {
     public constructor(api: APIRouter) {
         super();
 
-        this.method = "post";
+        this.method = "get";
         this.path = "/test";
         this.router = api.router;
 
@@ -21,13 +21,13 @@ export default class TestPOST extends BaseRoute {
 
     public async run(req: IncomingMessage, res: ServerResponse): Promise<void> {
         const request = req as any;
-        if (request.body && Object.entries(request.body).length !== 0) {
+        if (request.query && Object.entries(request.query).length !== 0) {
             send(res, 200, {
                 statusCode: 200,
                 statusMessage: "OK",
                 data: {
                     message: "Request successfully completed",
-                    requestBody: request.body
+                    requestQueries: request.query
                 }
             });
         } else {
@@ -35,7 +35,7 @@ export default class TestPOST extends BaseRoute {
                 statusCode: 400,
                 statusMessage: "Bad Request",
                 data: {
-                    message: "Missing request body"
+                    message: "Missing request queries"
                 }
             });
         }

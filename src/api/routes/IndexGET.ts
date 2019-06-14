@@ -20,10 +20,10 @@ export default class IndexGET extends BaseRoute {
         this.router = api.router;
         this.routes = api.routes;
 
-        this.router.get(this.path, this.run.bind(this));
+        this.router[this.method](this.path, this.run.bind(this));
     }
 
-    async run(_req: IncomingMessage, res: ServerResponse): Promise<void> {
+    public async run(_req: IncomingMessage, res: ServerResponse): Promise<void> {
         send(res, 200, {
             statusCode: 200,
             statusMessage: "OK",

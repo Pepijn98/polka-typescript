@@ -1,4 +1,4 @@
-import { IRoute } from "../interfaces/IRoute.ts";
+import { IRoute } from "../interfaces/IRoute";
 import { Polka } from "polka";
 import { IncomingMessage, ServerResponse } from "http";
 

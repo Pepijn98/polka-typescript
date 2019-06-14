@@ -22,7 +22,7 @@ export default class APIRouter {
             if (file.endsWith(".ts")) {
                 const route: BaseRoute = new (await import(path.join(__dirname, "routes", file))).default(this);
                 this.routes.add(route);
-                console.info(`Connected route: ${this.path}${route.path}`);
+                console.info(`Connected route: ${route.method.toUpperCase()}\t=> ${this.path}${route.path}`);
             }
         }
     }
