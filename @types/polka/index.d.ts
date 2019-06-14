@@ -3,6 +3,8 @@ declare module "polka" {
     import { IncomingMessage, ServerResponse, Server } from "http";
 
     export type NextFunction = (err?: any) => void;
+    export type OnErrorFunction = (err: string | Error, req: ServerRequest, res: ServerResponse, next: NextFunction) => void;
+    export type OnNoMatchFunction = (req: ServerRequest, res: ServerResponse) => void;
 
     export class ServerRequest extends IncomingMessage {
         params: Record<string|number|symbol, any>;
@@ -16,8 +18,8 @@ declare module "polka" {
 
     export interface PolkaOpts {
         server?: Server;
-        onError?: (err: string | Error, req: ServerRequest, res: ServerResponse, next: NextFunction) => void;
-        onNoMatch?: (req: ServerRequest, res: ServerResponse) => void;
+        onError?: OnErrorFunction;
+        onNoMatch?: OnNoMatchFunction;
     }
 
     export class Polka<T = any> extends Trouter {
@@ -26,8 +28,8 @@ declare module "polka" {
         bwares: Record<string|number|symbol, T>;
         parse: Function;
         server: Server;
-        onError: (err: string | Error, req: ServerRequest, res: ServerResponse, next: NextFunction) => void;
-        onNoMatch: (req: ServerRequest, res: ServerResponse) => void;
+        onError: OnErrorFunction;
+        onNoMatch: OnNoMatchFunction;
 
         [x: string]: any | undefined;
 
