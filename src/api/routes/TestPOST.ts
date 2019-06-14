@@ -1,8 +1,7 @@
 import send from "@polka/send-type";
 import APIRouter from "../Router";
 import BaseRoute from "../BaseRoute";
-import { Polka } from "polka";
-import { IncomingMessage, ServerResponse } from "http";
+import { Polka, ServerRequest, ServerResponse } from "polka";
 
 export default class TestPOST extends BaseRoute {
     public method: string;
@@ -19,15 +18,14 @@ export default class TestPOST extends BaseRoute {
         this.router[this.method](this.path, this.run.bind(this));
     }
 
-    public async run(req: IncomingMessage, res: ServerResponse): Promise<void> {
-        const request = req as any;
-        if (request.body && Object.entries(request.body).length !== 0) {
+    public async run(req: ServerRequest, res: ServerResponse): Promise<void> {
+        if (req.body && Object.entries(req.body).length !== 0) {
             send(res, 200, {
                 statusCode: 200,
                 statusMessage: "OK",
                 data: {
                     message: "Request successfully completed",
-                    requestBody: request.body
+                    requestBody: req.body
                 }
             });
         } else {

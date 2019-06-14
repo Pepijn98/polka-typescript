@@ -3,8 +3,7 @@ import Collection from "@kurozero/collection";
 import APIRouter from "../Router";
 import settings from "../../../settings";
 import BaseRoute from "../BaseRoute";
-import { Polka } from "polka";
-import { IncomingMessage, ServerResponse } from "http";
+import { Polka, ServerRequest, ServerResponse } from "polka";
 
 export default class IndexGET extends BaseRoute {
     public method: string;
@@ -23,7 +22,7 @@ export default class IndexGET extends BaseRoute {
         this.router[this.method](this.path, this.run.bind(this));
     }
 
-    public async run(_req: IncomingMessage, res: ServerResponse): Promise<void> {
+    public async run(_req: ServerRequest, res: ServerResponse): Promise<void> {
         send(res, 200, {
             statusCode: 200,
             statusMessage: "OK",

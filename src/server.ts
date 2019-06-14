@@ -1,8 +1,7 @@
 import settings from "../settings";
 import APIRouter from "./api/Router";
 import bodyParser from "body-parser";
-import polka from "polka";
-import { IncomingMessage, ServerResponse } from "http";
+import polka, { ServerRequest, ServerResponse } from "polka";
 
 const app = polka(settings.polka);
 const port = settings.env.startsWith("dev") ? 8080 : 80;
@@ -14,7 +13,7 @@ async function main(): Promise<void> {
     app.use(bodyParser.json()); // Awesome thing about polka is that it can use express middleware
     app.use(api.path, api.router);
 
-    app.get("/", (_req: IncomingMessage, res: ServerResponse) => {
+    app.get("/", (_req: ServerRequest, res: ServerResponse) => {
         res.writeHead(302, { "Location": "/api" });
         res.end();
     });

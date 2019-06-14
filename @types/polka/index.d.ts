@@ -4,10 +4,20 @@ declare module "polka" {
 
     export type NextFunction = (err?: any) => void;
 
+    export class ServerRequest extends IncomingMessage {
+        params: Record<string|number|symbol, any>;
+        path: string;
+        search: string | null;
+        query: Record<string|number|symbol, any>;
+        [x: string]: any | undefined;
+    }
+
+    export { ServerResponse };
+
     export interface PolkaOpts {
         server?: Server;
-        onError?: (err: string | Error, req: IncomingMessage, res: ServerResponse, next: NextFunction) => void;
-        onNoMatch?: (req: IncomingMessage, res: ServerResponse) => void;
+        onError?: (err: string | Error, req: ServerRequest, res: ServerResponse, next: NextFunction) => void;
+        onNoMatch?: (req: ServerRequest, res: ServerResponse) => void;
     }
 
     export class Polka<T = any> extends Trouter {
@@ -16,8 +26,8 @@ declare module "polka" {
         bwares: Record<string|number|symbol, T>;
         parse: Function;
         server: Server;
-        onError: (err: string | Error, req: IncomingMessage, res: ServerResponse, next: NextFunction) => void;
-        onNoMatch: (req: IncomingMessage, res: ServerResponse) => void;
+        onError: (err: string | Error, req: ServerRequest, res: ServerResponse, next: NextFunction) => void;
+        onNoMatch: (req: ServerRequest, res: ServerResponse) => void;
 
         [x: string]: any | undefined;
 
@@ -27,11 +37,11 @@ declare module "polka" {
 
         use(base: string, ...fns: T[]): this;
 
-        use(fn: (req: IncomingMessage, res: ServerResponse, next: NextFunction) => any): this;
+        use(fn: (req: ServerRequest, res: ServerResponse, next: NextFunction) => any): this;
 
         listen(port: string | number, ...fns: T[]): this;
 
-        handler(req: IncomingMessage, res: ServerResponse, info: Record<string|number|symbol, T>): void;
+        handler(req: ServerRequest, res: ServerResponse, info: Record<string|number|symbol, T>): void;
     }
 
     export default function(opts?: PolkaOpts): Polka;
