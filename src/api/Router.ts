@@ -1,18 +1,18 @@
 import Collection from "@kurozero/collection";
 import path from "path";
 import settings from "../../settings";
+import BaseRoute from "./BaseRoute";
 import polka, { Polka } from "polka";
 import { promises as fs } from "fs";
-import { IRoute } from "../interfaces/IRoute";
 
 export default class APIRouter {
     public router: Polka;
-    public routes: Collection<IRoute>;
+    public routes: Collection<BaseRoute>;
     public path: string;
 
     public constructor() {
         this.router = polka(settings.polka);
-        this.routes = new Collection();
+        this.routes = new Collection(BaseRoute);
         this.path = "/api";
     }
 
@@ -20,7 +20,7 @@ export default class APIRouter {
         const files = await fs.readdir(path.join(__dirname, "routes"));
         for (const file of files) {
             if (file.endsWith(".ts")) {
-                const route: IRoute = new (await import(path.join(__dirname, "routes", file))).default(this);
+                const route: BaseRoute = new (await import(path.join(__dirname, "routes", file))).default(this);
                 this.routes.add(route);
                 console.info(`Connected route: ${this.path}${route.path}`);
             }

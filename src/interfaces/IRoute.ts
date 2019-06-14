@@ -1,8 +1,9 @@
 import { Polka } from "polka";
+import { IncomingMessage, ServerResponse } from "http";
 
 export interface IRoute {
-    [x: string]: any | undefined;
     method: string;
     path: string;
     router: Polka;
+    run: (req: IncomingMessage, res: ServerResponse) => Promise<any>
 }
