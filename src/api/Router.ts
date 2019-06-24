@@ -19,7 +19,7 @@ export default class APIRouter {
     public async loadRoutes(): Promise<void> {
         const files = await fs.readdir(path.join(__dirname, "routes"));
         for (const file of files) {
-            if (file.endsWith(".ts")) {
+            if (file.endsWith(".ts") || file.endsWith(".js")) { // check for .js so you can compile ts to js
                 const route: BaseRoute = new (await import(path.join(__dirname, "routes", file))).default(this);
                 this.routes.add(route);
                 console.info(`Connected route: ${route.method.toUpperCase()}\t=> ${this.path}${route.path}`);
