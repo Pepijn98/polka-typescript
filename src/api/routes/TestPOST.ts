@@ -1,6 +1,7 @@
 import send from "@polka/send-type";
 import APIRouter from "../Router";
 import BaseRoute from "../BaseRoute";
+import settings from "../../../settings";
 import { Polka, ServerRequest, ServerResponse } from "polka";
 
 export default class TestPOST extends BaseRoute {
@@ -27,7 +28,7 @@ export default class TestPOST extends BaseRoute {
                     message: "Request successfully completed",
                     requestBody: req.body
                 }
-            });
+            }, settings.api.headers);
         } else {
             send(res, 400, {
                 statusCode: 400,
@@ -35,7 +36,7 @@ export default class TestPOST extends BaseRoute {
                 data: {
                     message: "Missing request body"
                 }
-            });
+            }, settings.api.headers);
         }
     }
 }

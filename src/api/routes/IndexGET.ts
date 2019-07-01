@@ -32,6 +32,6 @@ export default class IndexGET extends BaseRoute {
                 env: settings.env,
                 routes: this.routes.map((v) => `${v.method.toUpperCase()} => ${v.path}`).sort()
             }
-        });
+        }, settings.api.headers);
     }
 }

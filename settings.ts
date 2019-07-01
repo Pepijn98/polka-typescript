@@ -3,10 +3,11 @@ import pkg from "./package.json";
 import { ISettings } from "./src/interfaces/ISettings";
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
+const env = process.env.NODE_ENV.startsWith("dev") ? "development" : "production";
 
 const settings: ISettings = {
     version: pkg.version,
-    env: process.env.NODE_ENV.startsWith("dev") ? "development" : "production",
+    env,
     polka: {
         onError: (err, _req, res) => {
             console.error(err);
@@ -26,6 +27,14 @@ const settings: ISettings = {
                     message: "Route does not exist"
                 }
             });
+        }
+    },
+    api: {
+        headers: {
+            "trust-proxy": true,
+            "x-powered-by": "polka",
+            "json-spaces": 4,
+            env
         }
     }
 };
