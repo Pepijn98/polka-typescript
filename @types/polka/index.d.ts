@@ -41,6 +41,11 @@ declare module "polka" {
 
         use(fn: (req: ServerRequest, res: ServerResponse, next: NextFunction) => any): this;
 
+        // Request and Response from express are different than the ones from http
+        // to still use middleware from express without errors we need to use type any
+        // everything still works as expected
+        use(fn: (req: any, res: any, next: NextFunction) => any): this;
+
         listen(port: string | number, ...fns: T[]): this;
 
         handler(req: ServerRequest, res: ServerResponse, info: Record<string|number|symbol, T>): void;

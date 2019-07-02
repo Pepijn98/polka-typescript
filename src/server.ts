@@ -65,8 +65,8 @@ async function main(): Promise<void> {
     // Log each request that is made to /api routes
     app.use(morgan(":type-colored :req[cf-connecting-ip] :method :url :status-colored :response-time[0]ms \":user-agent\"", {
         skip: (req) => (!req.originalUrl.includes("/api") || req.originalUrl.includes("robots.txt"))
-    }) as any); // Need to cast to any because express' Request class is different that the ServerRequest class from http
-    app.use(limiter as any);
+    }));
+    app.use(limiter);
     app.use(bodyParser.json());
     app.use(api.path, api.router);
 
