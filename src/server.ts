@@ -34,7 +34,7 @@ morgan.token("type-colored", (req) => {
 
 /** Colored status code */
 morgan.token("status-colored", (_req, res) => {
-    if (res.headersSent || Boolean(res.getHeaders())) {
+    if (res.headersSent || Boolean(Object.entries(res.getHeaders()).length)) {
         let status = "";
         const statusCode = res.statusCode.toString();
         switch (true) {
