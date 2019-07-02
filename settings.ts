@@ -31,9 +31,7 @@ const settings: ISettings = {
     },
     api: {
         headers: {
-            "trust-proxy": true,
             "x-powered-by": "polka",
-            "json-spaces": 4,
             env
         }
     }
