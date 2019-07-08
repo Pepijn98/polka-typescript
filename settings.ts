@@ -1,6 +1,7 @@
 import send from "@polka/send-type";
 import pkg from "./package.json";
 import { ISettings } from "./src/interfaces/ISettings";
+import { ServerRequest, ServerResponse } from "polka";
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 const env = process.env.NODE_ENV.startsWith("dev") ? "development" : "production";
@@ -9,7 +10,7 @@ const settings: ISettings = {
     version: pkg.version,
     env,
     polka: {
-        onError: (err, _req, res) => {
+        onError: (err: Error, _req: ServerRequest, res: ServerResponse) => {
             console.error(err);
             send(res, 500, {
                 statusCode: 500,
@@ -19,7 +20,7 @@ const settings: ISettings = {
                 }
             });
         },
-        onNoMatch: (_req, res) => {
+        onNoMatch: (_req: ServerRequest, res: ServerResponse) => {
             send(res, 404, {
                 statusCode: 404,
                 statusMessage: "Not Found",
