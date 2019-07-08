@@ -13,10 +13,10 @@ declare module "polka" {
     type ErrorHandler = (err: Error | string, req: ServerRequest, res: ServerResponse, next: NextHandler) => void;
 
     export class ServerRequest extends IncomingMessage {
-        params: Record<string|number|symbol, any>;
+        params: Record<string | number | symbol, any>;
         path: string;
         search: string | null;
-        query: Record<string|number|symbol, any>;
+        query: Record<string | number | symbol, any>;
         [x: string]: any | undefined;
     }
 
@@ -42,7 +42,7 @@ declare module "polka" {
         readonly [x: string]: any | undefined;
 
         attach: (req: ServerRequest, res: ServerResponse) => void;
-		parse: (req: ServerRequest) => URLDescription | void;
+        parse: (req: ServerRequest) => URLDescription | void;
 
         add(method: Trouter.HTTPMethod, pattern: string, ...fns: Middleware[]): this;
 
@@ -61,5 +61,5 @@ declare module "polka" {
 
     export { ServerResponse };
 
-    export default function(opts?: Options): Polka;
+    export default function (opts?: Options): Polka;
 }
