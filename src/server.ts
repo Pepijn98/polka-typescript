@@ -75,10 +75,7 @@ async function main(): Promise<void> {
         res.end();
     });
 
-    app.listen(port, (e: Error) => {
-        if (e) throw e;
-        console.info(`> Running on http://localhost:${port}`);
-    });
+    app.listen(port, () => console.info(`> Running on http://localhost:${port}`));
 }
 
 main().catch(console.error);
