@@ -9,6 +9,7 @@ declare module "polka" {
     type NextHandler = (err?: Error | string) => void;
     type RequestHandler = (req: ServerRequest, res: ServerResponse, next?: NextHandler) => void;
     type Middleware = Polka | RequestHandler;
+    type AnyMiddleware = Middleware | any;
 
     type ErrorHandler = (err: Error | string, req: ServerRequest, res: ServerResponse, next: NextHandler) => void;
 
@@ -52,7 +53,8 @@ declare module "polka" {
         // Request and Response from express are different than the ones from http
         // to still use middleware from express without errors we need to use type any
         // everything still works as expected
-        use(fn: (req: any, res: any, next: NextHandler) => any): this;
+        use(pattern: string, ...handlers: AnyMiddleware[]): this;
+        use(fn: AnyMiddleware): this;
 
         readonly handler: RequestHandler
 
